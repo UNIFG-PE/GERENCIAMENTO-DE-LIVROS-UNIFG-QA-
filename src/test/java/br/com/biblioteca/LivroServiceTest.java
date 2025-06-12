@@ -1,7 +1,10 @@
 package br.com.biblioteca;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LivroServiceTest {
 
@@ -109,7 +112,7 @@ public void testAlterarStatus_DisponivelParaIndisponivel() {
 @Test
 public void testAlterarStatus_LivroInexistente() {
     LivroService service = new LivroService();
-    boolean resultado = service.alterarStatusDisponibilidade("isbn-invalido", true);
+    boolean resultado = service.alterarStatusDisponibilidade("isbn-invalido", true);   // comentário só para subir o código
     assertFalse(resultado); 
 }
 
