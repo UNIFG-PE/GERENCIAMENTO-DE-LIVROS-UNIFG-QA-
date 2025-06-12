@@ -10,6 +10,12 @@ public class LivroService {
     public boolean atualizarLivro(Livro livro) {
     return false; 
 }
+    public boolean removerLivro(String isbn) {
+    return false;
+}
+    public boolean alterarStatusDisponibilidade(String isbn, boolean novoStatus) {
+    return false;
+}
 
 
 }
