@@ -1,9 +1,7 @@
 package br.com.biblioteca;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 public class LivroServiceTest {
@@ -15,13 +13,13 @@ public class LivroServiceTest {
 
         boolean resultado = service.adicionarLivro(livro);
 
-        assertTrue(resultado, "O livro deveria ser adicionado com sucesso");
+        assertTrue(resultado);
     }
 
     @Test
     public void testAdicionarLivroComCampoObrigatorioVazio() {
     LivroService service = new LivroService();
-    // Título está vazio
+    
     Livro livro = new Livro("", "Autor Exemplo", "9876543210", "Editora Exemplo", 2024, 5);
 
     boolean resultado = service.adicionarLivro(livro);
@@ -40,8 +38,8 @@ public void testAdicionarLivroComISBNDuplicado() {
     Livro livro2 = new Livro("Livro 2", "Autor 2", "1111111111", "Editora Y", 2023, 1);
     boolean resultado2 = service.adicionarLivro(livro2);
 
-    assertTrue(resultado1, "O primeiro livro deve ser cadastrado com sucesso");
-    assertFalse(resultado2, "O sistema deve impedir o cadastro de ISBN duplicado");
+    assertTrue(resultado1);
+    assertFalse(resultado2);
 }
 
 @Test
@@ -49,12 +47,11 @@ public void testVisualizarLivroExistente() {
     LivroService service = new LivroService();
     Livro livro = new Livro("Clean Architecture", "Robert Martin", "9999999999", "Pearson", 2019, 2);
 
-    // Simula que o livro foi adicionado (mesmo que não salve de verdade)
     service.adicionarLivro(livro);
 
     Livro resultado = service.buscarLivroPorISBN("9999999999");
 
-    assertNotNull(resultado, "O sistema deve retornar o livro existente");
+    assertNotNull(resultado);
 }
 
 @Test
@@ -72,7 +69,7 @@ public void testAtualizarLivroComDadosValidos() {
     LivroService service = new LivroService();
 
     Livro livroOriginal = new Livro("Livro Antigo", "Autor A", "2222222222", "Editora A", 2010, 1);
-    service.adicionarLivro(livroOriginal); // simula o cadastro
+    service.adicionarLivro(livroOriginal);
 
     Livro livroAtualizado = new Livro("Livro Atualizado", "Autor A", "2222222222", "Editora Nova", 2024, 2);
     boolean resultado = service.atualizarLivro(livroAtualizado);
@@ -112,7 +109,7 @@ public void testAlterarStatus_DisponivelParaIndisponivel() {
 @Test
 public void testAlterarStatus_LivroInexistente() {
     LivroService service = new LivroService();
-    boolean resultado = service.alterarStatusDisponibilidade("isbn-invalido", true);   // comentário só para subir o código
+    boolean resultado = service.alterarStatusDisponibilidade("isbn-invalido", true);
     assertFalse(resultado); 
 }
 
